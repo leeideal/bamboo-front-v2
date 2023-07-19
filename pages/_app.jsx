@@ -1,4 +1,4 @@
-import Layout from "components/layout/Layout";
+import Layout from "components/layouts/Layout";
 import styled from "styled-components";
 
 const Body = styled.div`

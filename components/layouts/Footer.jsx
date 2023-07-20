@@ -3,43 +3,14 @@ import styled from 'styled-components';
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-
-const FooterContainer = styled.footer`
-  padding: 15px 5%;
-  width: 100%;
-  background-color: #EEEDED;
-  font-size: 10px;
-  display: flex;
-  flex-direction: column;
-`
-
-const FooterDev = styled.span`
-  color: #727272;
-  padding: 1% 0;
-`
-
-const FooterThanks = styled.span`
-  color: #04c96b;
-  padding: 1% 0;
-`
-
-const FooterInsta = styled.span`
-  display: flex;
-  align-items: center;
-  gap: 1%;
-  padding: 3% 0 0 0;
-  cursor: pointer;
-`
-
-const FooterInstaImg = styled(FontAwesomeIcon)`
-  color: black;
-  width: 10px;
-`
-
-const FooterRights = styled.span`
-  color: #BBB;
-  padding: 1% 0;
-`
+import {
+  FooterContainer,
+  FooterDev,
+  FooterThanks,
+  FooterInsta,
+  FooterInstaImg,
+  FooterRights
+} from './Styled.jsx'
 
 export default function Footer(){
   const router = useRouter();

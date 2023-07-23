@@ -12,13 +12,10 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    background-color: #FBFBFB;
 `
 
 const Content = styled.div`
     flex: 1 0 auto;
-    width: 90%;
-    margin: 0 5%;
 `
 
 export default function Layout( {children} ){

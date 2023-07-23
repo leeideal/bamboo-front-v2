@@ -15,9 +15,6 @@ import DeletedCard from "@/components/main/DeletedCard.jsx";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router.js";
 
-const Container = styled.div`
-`
-
 export default function Main(){
 
   // type 
@@ -105,7 +102,7 @@ export default function Main(){
   const router = useRouter()
 
   return(
-    <Container>
+    <>
       <Search />
 
       <TypeContainer>
@@ -154,6 +151,6 @@ export default function Main(){
 
     </CardContainer>
 
-    </Container>
+    </>
   )
 }

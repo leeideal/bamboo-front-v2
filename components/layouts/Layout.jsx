@@ -13,6 +13,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     border-radius: 5px;
     background-color: #FBFBFB;
+    position: relative;
 `
 
 const Content = styled.div`

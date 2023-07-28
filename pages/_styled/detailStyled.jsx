@@ -41,6 +41,14 @@ export const DetailDate = styled.div`
     padding: 5%;
 `
 
+export const DetailDateNemo = styled.span`
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: -0.3px;
+    color: #04C96BE0;
+    padding: 1%;
+`
+
 export const DetailText = styled.div`
     padding: 2% 5%;
 

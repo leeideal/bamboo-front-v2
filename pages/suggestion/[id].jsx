@@ -1,4 +1,4 @@
-import { DetailCommentContainer, DetailCommentCount, DetailCommentNum, DetailContainer, DetailContent, DetailDate, DetailNumber, DetailText, DetailType, DetailCommentHeader, DetailCommentBtn, DetailComment, DetailCommentImg, DetailCommentContent } from "../_styled/detailStyled"
+import { DetailCommentContainer, DetailCommentCount, DetailCommentNum, DetailContainer, DetailContent, DetailDate, DetailNumber, DetailText, DetailType, DetailCommentHeader, DetailCommentBtn, DetailComment, DetailCommentImg, DetailCommentContent, DetailDateNemo } from "../_styled/detailStyled"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import logo from '../../components/image/logo.png'
@@ -24,7 +24,7 @@ export default function SuggestionDetail() {
         {  
           "id": 1,
           "title": "피곤해",
-          "type": "COMMON",
+          "type": "NEMO",
           "is_student": true,
           "created_at": "2023-12-25T07:47:07.687842+09:00",
           "report_cnt": 1,
@@ -61,7 +61,10 @@ export default function SuggestionDetail() {
     }
   }
 
-  console.log(post.type)
+  // 니모 시간
+  const date = post.created_at.split('T')
+  const time = date[1].split('.')[0].split(':')[0]
+  const ampm = time ? '오전' : '오후'
 
 
   return (
@@ -73,7 +76,8 @@ export default function SuggestionDetail() {
       <DetailContent>
         <DetailNumber>#{post.id}번째 뿌우</DetailNumber>
         <DetailDate>
-          {post.type === "COMMON" ? post.created_at.split('T')[0] + " "+post.created_at.split('T')[1].substr(0,5): postTitle}
+          {post.created_at.split('T')[0] + " "+post.created_at.split('T')[1].substr(0,5)}
+          {post.type === "NEMO" && <DetailDateNemo>{ampm} {time}시 니모</DetailDateNemo> }
         </DetailDate>
 
         <DetailText>{post.title}</DetailText>

@@ -9,7 +9,7 @@ export default function SuggestionDetail() {
 
   const router = useRouter()
   
-  const [post, setPost] = useState([])
+  const [post, setPost] = useState()
   const [comments, setComments] = useState([])
 
   useEffect(()=>{
@@ -62,25 +62,41 @@ export default function SuggestionDetail() {
   }
 
   // 니모 시간
-  const date = post.created_at.split('T')
-  const time = date[1].split('.')[0].split(':')[0]
-  const ampm = time ? '오전' : '오후'
+  const date = post?.created_at.split('T')[1].split('.')[0].split(':')[0]
+  const formattedDate = date ? parseInt(date, 10) : ''
+  // console.log(date[0])
+  // const time = date[1].split('.')[0].split(':')[0]
+  // const ampm = time ? '오전' : '오후'
+  
 
-
+  const nemoTitleDate = (
+    <DetailDateNemo>
+      {formattedDate < 12 ?
+        <>오전 {formattedDate}시 니모</> 
+        :
+        <>오후 {formattedDate-12}시 니모</>
+      }
+    </DetailDateNemo>
+  )
+  
   return (
     <DetailContainer>
       <DetailType>
-        {post.type === "COMMON" ? "🎋 일반제보": "🐠 니모를 찾아서"}
+        {post?.type === "COMMON" ? "🎋 일반제보": "🐠 니모를 찾아서"}
       </DetailType>
 
       <DetailContent>
-        <DetailNumber>#{post.id}번째 뿌우</DetailNumber>
+        <DetailNumber>#{post?.id}번째 뿌우</DetailNumber>
         <DetailDate>
-          {post.created_at.split('T')[0] + " "+post.created_at.split('T')[1].substr(0,5)}
-          {post.type === "NEMO" && <DetailDateNemo>{ampm} {time}시 니모</DetailDateNemo> }
+          {post?.created_at.split('T')[0] + " "}
+          {post?.type === "COMMON" ?
+            <>{post.created_at.split('T')[1].substr(0,5)}</>
+            :
+            <>{nemoTitleDate}</>
+          }
         </DetailDate>
 
-        <DetailText>{post.title}</DetailText>
+        <DetailText>{post?.title}</DetailText>
       </DetailContent>
 
       <DetailCommentContainer>

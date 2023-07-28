@@ -3,11 +3,37 @@ import logo from '../image/logo.png'
 import { faPen, faComment, faPaperPlane} from "@fortawesome/free-solid-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { useRouter } from 'next/router';
+import { useRef, useEffect } from 'react';
 
 export default function Modal({ modalOpenHandler }) {
     const router = useRouter()
+
+    // 모달창 밖에 눌렀을 때
+    const outSection = useRef();
+
+    const useOnClickOutside = (ref, handler) => {
+        useEffect(() => {
+        const listener = (e) => {
+            if (!ref.current || ref.current.contains(e.target)) {
+            return;
+            }
+            handler();
+        };
+
+        document.addEventListener("mousedown", listener);
+        document.addEventListener("touchstart", listener);
+
+        return () => {
+            document.removeEventListener("mousedown", listener);
+            document.removeEventListener("touchstart", listener);
+        };
+        });
+    };
+
+    useOnClickOutside(outSection, modalOpenHandler);
+    
     return(
-        <Container>
+        <Container ref={outSection}>
             <ModalBtn onClick={modalOpenHandler}>
                 X
             </ModalBtn>

@@ -22,7 +22,7 @@ export default function NavBar() {
   return (
     <>
     <NavContainer>
-      <NavLogo>
+      <NavLogo href='/'>
         <NavLogoImg src={logo} alt='logo' width={25}/>
         <NavLogoText>DGU-Bamboo</NavLogoText>
       </NavLogo>

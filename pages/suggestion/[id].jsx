@@ -3,26 +3,86 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import logo from '../../components/image/logo.png'
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function SuggestionDetail() {
 
   const router = useRouter()
+  
+  const [post, setPost] = useState([])
+  const [comments, setComments] = useState([])
+
+  useEffect(()=>{
+    fetchPost()
+    fetchComments()
+  },[])
+
+  const fetchPost = async () => {
+    try {
+      // dummy
+      const dummy = 
+        {  
+          "id": 1,
+          "title": "피곤해",
+          "type": "COMMON",
+          "is_student": true,
+          "created_at": "2023-12-25T07:47:07.687842+09:00",
+          "report_cnt": 1,
+          "is_deleted": false,
+        }
+      
+      setPost(dummy)
+      console.log(post)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const fetchComments = async () => {
+    try {
+      // dummy
+      const dummy = [
+        {  
+          "id": 1,
+          "content": "댓글이냐?",
+          "is_student": true,
+          "created_at": "2023-12-25T07:47:07.687842+09:00",
+        },
+        {  
+          "id": 2,
+          "content": "댓글이다",
+          "is_student": false,
+          "created_at": "2023-12-25T07:47:07.687842+09:00",
+        },
+      ]
+      setComments(dummy)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  console.log(post.type)
+
 
   return (
     <DetailContainer>
-      <DetailType>일반 제보</DetailType>
+      <DetailType>
+        {post.type === "COMMON" ? "🎋 일반제보": "🐠 니모를 찾아서"}
+      </DetailType>
 
       <DetailContent>
-        <DetailNumber>#1번째 뿌우</DetailNumber>
-        <DetailDate>2023-05-10 16:43</DetailDate>
-        
-        <DetailText>어쩌구 그 분 찾아요!어쩌구 그 분 찾아요!어쩌구 그 분 찾아요!어쩌구 그 분 찾</DetailText>
+        <DetailNumber>#{post.id}번째 뿌우</DetailNumber>
+        <DetailDate>
+          {post.type === "COMMON" ? post.created_at.split('T')[0] + " "+post.created_at.split('T')[1].substr(0,5): postTitle}
+        </DetailDate>
+
+        <DetailText>{post.title}</DetailText>
       </DetailContent>
 
       <DetailCommentContainer>
 
         <DetailCommentHeader>
-          <DetailCommentCount>댓글 2</DetailCommentCount>
+          <DetailCommentCount>댓글 {comments.length}</DetailCommentCount>
           <DetailCommentBtn
             onClick={()=>router.push(`/comment`)}
           >
@@ -31,26 +91,18 @@ export default function SuggestionDetail() {
           </DetailCommentBtn>
         </DetailCommentHeader>
 
-        <DetailComment>
-          <DetailCommentNum>
-            댓글1
-            <DetailCommentImg src={logo} />
-          </DetailCommentNum>
-          <DetailCommentContent>
-            여기가 댓글이야 여기
-          </DetailCommentContent>
-        </DetailComment>
-
-        <DetailComment>
-          <DetailCommentNum>
-            댓글1
-            <DetailCommentImg src={logo} />
-          </DetailCommentNum>
-          <DetailCommentContent>
-            여기가 댓글이야 여기
-          </DetailCommentContent>
-        </DetailComment>
-
+        {comments.map((comment)=>(
+          <DetailComment key={comment.id}>
+            <DetailCommentNum>
+              댓글{comment.id}
+              {comment.is_student && <DetailCommentImg src={logo} alt='img'/>}
+            </DetailCommentNum>
+            <DetailCommentContent>
+              {comment.content}
+            </DetailCommentContent>
+          </DetailComment>
+        ))}
+        
       </DetailCommentContainer>
     </DetailContainer>
   )

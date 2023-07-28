@@ -31,7 +31,7 @@ export default function Modal({ modalOpenHandler }) {
     };
 
     useOnClickOutside(outSection, modalOpenHandler);
-    
+
     return(
         <Container ref={outSection}>
             <ModalBtn onClick={modalOpenHandler}>
@@ -39,15 +39,15 @@ export default function Modal({ modalOpenHandler }) {
             </ModalBtn>
             <LogoImg src={logo} alt='logo' />
             <LogoText>DGU-Bamboo</LogoText>
-            <PageBtn href='/suggestion'>
+            <PageBtn href='/suggestion' onClick={modalOpenHandler}>
                 <PageFontawesomeIcon icon={faPen} />
                 제보하기
             </PageBtn>
-            <PageBtn href='/comment'>
+            <PageBtn href='/comment' onClick={modalOpenHandler}>
                 <PageFontawesomeIcon icon={faComment} />
                 댓글달기
             </PageBtn>
-            <PageBtnProposal href='/proposal'>
+            <PageBtnProposal href='/proposal' onClick={modalOpenHandler}>
                 <PageFontawesomeIcon icon={faPaperPlane} />
                 건의하기
             </PageBtnProposal>

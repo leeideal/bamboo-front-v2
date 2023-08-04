@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // nav
@@ -11,7 +12,7 @@ export const NavContainer = styled.div`
   align-items: center;
 `
 
-export const NavLogo = styled.div`
+export const NavLogo = styled(Link)`
   display: flex;
   align-items: center;
   gap: 3%;
